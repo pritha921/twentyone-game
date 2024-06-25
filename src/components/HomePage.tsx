@@ -27,7 +27,7 @@ const HomePage = () => {
           if he gets the chance to call 21 and wins otherwise.
         </p>
       </div>
-      <Link to="/userinput">
+      <Link to="/userInputForm">
         <button className="letsGoButton" role="button">
           Let's Go
         </button>
