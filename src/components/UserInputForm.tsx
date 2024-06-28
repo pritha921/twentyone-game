@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
-import "./UserInputFormStyles.css";
+import React, { useEffect } from 'react';
+import { useForm, useFieldArray, SubmitHandler } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import './UserInputFormStyles.css';
 
 interface FormData {
   winningNumber: number;
@@ -15,22 +15,13 @@ interface FormDataProps {
 }
 
 const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    watch,
-    formState: { errors },
-  } = useForm<FormData>();
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "users",
-  });
+  const { register, handleSubmit, control, watch, formState: { errors } } = useForm<FormData>();
+  const { fields, append, remove } = useFieldArray({ control, name: 'users' });
   const navigate = useNavigate();
-  const numberOfUsers = watch("numberOfUsers");
+  const numberOfUsers = watch('numberOfUsers');
 
   const onSubmitForm: SubmitHandler<FormData> = (data) => {
-    navigate("/shufflingPage", { state: { users: data.users } });
+    navigate('/shufflingPage', { state: { ...data } });
     onSubmit(data);
   };
 
@@ -38,7 +29,7 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
     const currentLength = fields.length;
     if (numberOfUsers > currentLength) {
       for (let i = currentLength; i < numberOfUsers; i++) {
-        append({ name: "" });
+        append({ name: '' });
       }
     } else if (numberOfUsers < currentLength) {
       for (let i = currentLength; i > numberOfUsers; i--) {
@@ -57,11 +48,9 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
             <input
               type="number"
               id="winningNumber"
-              {...register("winningNumber", { required: true })}
+              {...register('winningNumber', { required: true })}
             />
-            {errors.winningNumber && (
-              <span className="error">This field is required</span>
-            )}
+            {errors.winningNumber && <span className="error">This field is required</span>}
           </div>
 
           <div className="form-group">
@@ -69,11 +58,9 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
             <input
               type="number"
               id="maxInputPerTurn"
-              {...register("maxInputPerTurn", { required: true })}
+              {...register('maxInputPerTurn', { required: true })}
             />
-            {errors.maxInputPerTurn && (
-              <span className="error">This field is required</span>
-            )}
+            {errors.maxInputPerTurn && <span className="error">This field is required</span>}
           </div>
 
           <div className="form-group">
@@ -81,33 +68,25 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
             <input
               type="number"
               id="numberOfUsers"
-              {...register("numberOfUsers", { required: true })}
+              {...register('numberOfUsers', { required: true })}
             />
-            {errors.numberOfUsers && (
-              <span className="error">This field is required</span>
-            )}
+            {errors.numberOfUsers && <span className="error">This field is required</span>}
           </div>
 
           {fields.map((item, index) => (
             <div className="form-group" key={item.id}>
-              <label htmlFor={`users[${index}].name`}>
-                User {index + 1} Name:
-              </label>
+              <label htmlFor={`users[${index}].name`}>User {index + 1} Name:</label>
               <input
                 type="text"
                 id={`users[${index}].name`}
                 {...register(`users.${index}.name`, { required: true })}
               />
-              {errors.users && errors.users[index] && (
-                <span className="error">This field is required</span>
-              )}
+              {errors.users && errors.users[index] && <span className="error">This field is required</span>}
             </div>
           ))}
 
           <div className="button-container">
-            <button className="button-24" role="button">
-              Submit
-            </button>
+            <button className="button-24" role="button">Submit</button>
           </div>
         </form>
       </div>
@@ -116,6 +95,5 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
 };
 
 export default UserInputForm;
-
 
 

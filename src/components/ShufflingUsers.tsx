@@ -1,5 +1,5 @@
-import  { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface User {
   name: string;
@@ -7,14 +7,16 @@ interface User {
 
 interface LocationState {
   users: User[];
+  winningNumber: number;
+  maxInputPerTurn: number;
 }
 
 const ShufflingPage = () => {
   const location = useLocation();
-  const { users } = location.state as LocationState;
+  const navigate = useNavigate();
+  const { users, winningNumber, maxInputPerTurn } = location.state as LocationState;
   const [shuffledUsers, setShuffledUsers] = useState<User[]>([]);
 
-  // Function to shuffle an array
   const shuffleArray = (array: User[]) => {
     return array
       .map((value) => ({ value, sort: Math.random() }))
@@ -22,10 +24,13 @@ const ShufflingPage = () => {
       .map(({ value }) => value);
   };
 
-  // Shuffle users when component mounts
   useEffect(() => {
     setShuffledUsers(shuffleArray(users));
   }, [users]);
+
+  const startGame = () => {
+    navigate('/game', { state: { users: shuffledUsers, winningNumber, maxInputPerTurn } });
+  };
 
   return (
     <div>
@@ -36,11 +41,10 @@ const ShufflingPage = () => {
           <li key={index}>{user.name}</li>
         ))}
       </ul>
-      <div>
-        <button>Play now</button>
-      </div>
+      <button onClick={startGame}>Play now</button>
     </div>
   );
 };
 
 export default ShufflingPage;
+
