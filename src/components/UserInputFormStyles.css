@@ -1,89 +1,101 @@
-/* UserInputFormStyles.css */
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Chakra Petch', sans-serif;
-  }
-  
-  .form-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 50px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 600px;
-  }
-  
-  .form-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-size: 1em;
-    color: #333;
-    margin-right: 10px;
-    flex: 1;
-  }
-  
-  input {
-    padding: 10px;
-    border: 1px solid #333;
-    border-radius: 2px;
-    flex: 2;
-  }
-  
-  .error {
-    color: red;
-    font-size: 0.8em;
-    margin-left: 10px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
-  }
-  
-  .button-24 {
-    background: #ff7d29;
-    border: 1px solid #ff7d29;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-    box-sizing: border-box;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-block;
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-  }
-  
-  .button-24:hover,
-  .button-24:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #ff4742;
-  }
-  
-  .button-24:active {
-    opacity: 0.5;
-  }
-  
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  height: 50vh; 
+  background-color:#ffff80;
+  margin-top:50px
+}
+
+
+.form-container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 600px;
+  position: relative; 
+}
+
+
+h3 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+  color: #333; 
+  margin-bottom: 20px; 
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1em;
+  color: #333;
+  margin-right: 10px;
+  flex: 1;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 2px;
+  flex: 2;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+  margin-left: 30px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.button-24 {
+  background: #ff7d29;
+  border: 1px solid #ff7d29;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-24:hover,
+.button-24:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #ff4742;
+}
+
+.button-24:active {
+  opacity: 0.5;
+}

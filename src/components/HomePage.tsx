@@ -3,28 +3,19 @@ import "./HomePageStyling.css";
 import "../index.css";
 const HomePage = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "8vh",
-      }}
-    >
-      <h1>TwentyOne Game!!</h1>
+    <div className="homepage-container">
       <div style={{ textAlign: "center" }}>
-        <p style={{ fontSize: "30px", padding: "30px 25px 30px 25px" }}>
-          21, Bagram, or Twenty plus one is a game which progresses by counting
-          up 1 to 21, with the player who calls “21” is eliminated. It can be
-          played between any number of players. Implementation This is a simple
-          21 number game using Python programming language. The game illustrated
-          here is between the player and the computer. There can be many
-          variations in the game. The player can choose to start first or
-          second. The list of numbers is shown before the Player takes his turn
-          so that it becomes convenient. If consecutive numbers are not given in
-          input then the player is automatically disqualified. The player loses
-          if he gets the chance to call 21 and wins otherwise.
+        <p className="description-container">
+          Welcome to the ultimate showdown of wits and strategy—**BAGRAM GAME**!
+          Here, you and your friends will face off in a thrilling race to reach
+          a number of your choosing. Ready for the challenge? You get to set the
+          winning number, decide how many players are in the game, and even
+          choose how many numbers each player can enter per turn. Once you’ve
+          got everything set up, players will take turns entering consecutive
+          numbers, aiming to hit the magic number before their opponents. Be
+          careful, though! If someone crosses the winning number on their turn,
+          it’s game over for them! So gear up, get your game face on, and let
+          the number-crunching fun begin!
         </p>
       </div>
       <Link to="/userInputForm">

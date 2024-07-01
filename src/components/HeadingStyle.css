@@ -1,0 +1,9 @@
+h1 {
+    display: flex;
+    justify-content: center;
+    color: #ff7d29;
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 6em;
+    text-shadow: 0.03em 0.03em 0 hsla(230, 50%, 50%, 1);
+    margin:0;
+  }
