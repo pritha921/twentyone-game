@@ -8,14 +8,14 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center; 
-  height: 50vh; 
+  min-height: 50vh; 
   background-color:#ffff80;
-  margin-top:50px
+  margin-top:100px
 }
 
 
 .form-container {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: #FEFFD2;
   padding: 50px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
