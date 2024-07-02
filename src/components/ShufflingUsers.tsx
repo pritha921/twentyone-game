@@ -49,7 +49,7 @@ const ShufflingPage = () => {
       <h3 className={styles.headingContainer}>
         Let's Decide the Order of Playing
       </h3>
-      <List sx={{ width: "100%", maxWidth: 360, padding:"20px" }}>
+      <List sx={{ width: "100%", maxWidth: 360, bgcolor:"#FEFFD2", padding:"20px" }}>
         {shuffledUsers.map((user, index) => (
           <div key={index}>
             <ListItem alignItems="flex-start">

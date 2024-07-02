@@ -75,7 +75,7 @@ const GameComponent = () => {
       <div className={styles.fullWidth}>
         <p>It's {users[currentPlayerIndex].name}'s turn</p>
         <input type="text" value={input} onChange={handleInputChange} />
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleSubmit} className={styles.submitButton}>Submit</button>
       </div>
       <div className={`${styles.fullWidth} ${styles.bottomBar}` }>
         <div>
@@ -91,3 +91,5 @@ const GameComponent = () => {
 };
 
 export default GameComponent;
+
+
