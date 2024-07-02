@@ -79,8 +79,8 @@ const GameComponent = () => {
       </div>
       <div className={`${styles.fullWidth} ${styles.bottomBar}` }>
         <div>
-          <button onClick={handleRestart}>Restart</button>
-          <button onClick={handleBackToHome}>Back to Home</button>
+          <button onClick={handleRestart} className={styles.submitButton}>Restart</button>
+          <button onClick={handleBackToHome} className={styles.submitButton}>Back to Home</button>
         </div>
         <div>
           <p>Current Number: {currentNumber}</p>

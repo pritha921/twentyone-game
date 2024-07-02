@@ -18,44 +18,41 @@
   font-family: "Chakra Petch", sans-serif;
   font-size: 1.2rem;
 }
-
 .playNow {
-  font-size: 16px;
-  font-weight: 200;
-  letter-spacing: 1px;
-  padding: 13px 20px 13px;
-  outline: 0;
-  border: 1px solid black;
-  cursor: pointer;
-  position: relative;
-  background-color: rgba(0, 0, 0, 0);
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  display: block; /* Make the button a block element */
-  margin-left: auto; /* Center the button */
-  margin-right: auto; /* Center the button */
-}
-
-.playNow:after {
-  content: "";
-  background-color: #ff7d29;
-  width: 100%;
-  z-index: -1;
-  position: absolute;
-  height: 100%;
-  top: 7px;
-  left: 7px;
-  transition: 0.2s;
-}
-
-.playNow:hover:after {
-  top: 0px;
-  left: 0px;
-}
-
-@media (min-width: 768px) {
-  .playNow {
-    padding: 13px 50px 13px;
+    background: #ff7d29;
+    border: 1px solid #ff7d29;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Chakra Petch", sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    margin:10px
+    
   }
-}
+  
+  .playNow:hover,
+  .playNow:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #ff4742;
+  }
+  
+  .playNow:active {
+    opacity: 0.5;
+  }
+  

@@ -50,7 +50,7 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
     <div className="container">
       <form className="form-container" onSubmit={handleSubmit(onSubmitForm)}>
         <div className="form-group">
-          <TextField
+          <TextField 
             label="Winning Number"
             type="number"
             {...register("winningNumber", { required: true })}
