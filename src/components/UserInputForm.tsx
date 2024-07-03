@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-// import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
 import "./UserInputFormStyles.css";
 
 interface FormData {
@@ -23,7 +22,12 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
     control,
     watch,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues: {
+      numberOfUsers: 2,
+      users: [{ name: "" }, { name: "" }],
+    },
+  });
   const { fields, append, remove } = useFieldArray({ control, name: "users" });
   const navigate = useNavigate();
   const numberOfUsers = watch("numberOfUsers");
@@ -50,7 +54,7 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
     <div className="container">
       <form className="form-container" onSubmit={handleSubmit(onSubmitForm)}>
         <div className="form-group">
-          <TextField 
+          <TextField
             label="Winning Number"
             type="number"
             {...register("winningNumber", { required: true })}
@@ -88,7 +92,9 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
               label={`User ${index + 1} Name`}
               {...register(`users.${index}.name`, { required: true })}
               error={!!errors.users?.[index]?.name}
-              helperText={errors.users?.[index]?.name ? "This field is required" : ""}
+              helperText={
+                errors.users?.[index]?.name ? "This field is required" : ""
+              }
               fullWidth
             />
           </div>
@@ -105,4 +111,3 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
 };
 
 export default UserInputForm;
-
