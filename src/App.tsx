@@ -4,6 +4,7 @@ import UserInputForm from "./components/UserInputForm";
 import ShufflingPage from "./components/ShufflingUsers";
 import GameComponent from "./components/Game";
 import NavBar from "./components/Heading";
+import LeaderBoard from "./components/LeaderBoard";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           />
           <Route path="/shufflingPage" element={<ShufflingPage />} />
           <Route path="/game" element={<GameComponent />} />
+          <Route path="/LeaderBoard" element={<LeaderBoard />} />
         </Routes>
       </div>
     </Router>
