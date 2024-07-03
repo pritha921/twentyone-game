@@ -56,77 +56,73 @@
   }
    */
 
-.gameContainer{
-    display:flex;
-    flex-wrap: wrap;
-    min-height: calc(100vh - 125px);
-    padding: 20px;
-
+.gameContainer {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: calc(100vh - 125px);
+  padding: 20px;
 }
 
-.winningNumber{
-    max-width:fit-content;
-    margin:20px auto;
-    font-size: 2em;
-
+.winningNumber {
+  max-width: fit-content;
+  margin: 20px auto;
+  font-size: 2em;
 }
 
-.fullWidth{
-    width:100%;
-    text-align: center;
+.fullWidth {
+  width: 100%;
+  text-align: center;
 }
 
-.bottomBar{
-    align-self: end;
-    display:flex;
-    justify-content: space-between;
+.bottomBar {
+  align-self: end;
+  display: flex;
+  /* justify-content: space-between; */
 }
 
 input {
-    width: 50%;
-    padding: 20px;
-    font-size: 1rem;
-    margin: 10px 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
+  width: 50%;
+  padding: 20px;
+  font-size: 1rem;
+  margin: 10px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
 
-  .submitButton {
-    background: #ff7d29;
-    border: 1px solid #ff7d29;
-    border-radius: 6px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-    box-sizing: border-box;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Chakra Petch", sans-serif;
-    font-size: 16px;
-    font-weight: 800;
-    line-height: 16px;
-    min-height: 40px;
-    outline: 0;
-    padding: 12px 14px;
-    text-align: center;
-    text-rendering: geometricprecision;
-    text-transform: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-    margin:10px
-    
-  }
-  
-  .submitButton:hover,
-  .submitButton:active {
-    background-color: initial;
-    background-position: 0 0;
-    color: #ff4742;
-  }
-  
-  .submitButton:active {
-    opacity: 0.5;
-  }
-  
+.submitButton {
+  background: #ff7d29;
+  border: 1px solid #ff7d29;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  margin: 10px;
+}
+
+.submitButton:hover,
+.submitButton:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #ff4742;
+}
+
+.submitButton:active {
+  opacity: 0.5;
+}

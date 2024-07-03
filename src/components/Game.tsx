@@ -71,19 +71,18 @@ const GameComponent = () => {
     <div className={styles.gameContainer}>
       <div className={styles.fullWidth}>
         <p className={styles.winningNumber}>Winning number:{winningNumber} </p>
+        <p className={styles.currentNumber}>Current Number: {currentNumber}</p>
       </div>
       <div className={styles.fullWidth}>
-        <p>It's {users[currentPlayerIndex].name}'s turn</p>
+        <p style={{'fontSize':'1.5em'}}>It's {users[currentPlayerIndex].name}'s turn</p>
         <input type="text" value={input} onChange={handleInputChange} />
         <button onClick={handleSubmit} className={styles.submitButton}>Submit</button>
+        <p>Users must separate the numbers using comma.</p>
       </div>
       <div className={`${styles.fullWidth} ${styles.bottomBar}` }>
         <div>
           <button onClick={handleRestart} className={styles.submitButton}>Restart</button>
           <button onClick={handleBackToHome} className={styles.submitButton}>Back to Home</button>
-        </div>
-        <div>
-          <p>Current Number: {currentNumber}</p>
         </div>
       </div>
     </div>
