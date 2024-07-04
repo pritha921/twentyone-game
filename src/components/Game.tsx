@@ -15,9 +15,10 @@ interface LocationState {
 const GameComponent = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { users, winningNumber, maxInputPerTurn } =
+  const { users: initialUsers, winningNumber, maxInputPerTurn } =
     location.state as LocationState;
 
+  const [users, setUsers] = useState(initialUsers);
   const [currentNumber, setCurrentNumber] = useState(0);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [input, setInput] = useState("");
@@ -51,7 +52,21 @@ const GameComponent = () => {
 
     if (newCurrentNumber >= winningNumber) {
       alert(`${users[currentPlayerIndex].name} loses!`);
-      navigate("/");
+
+      const remainingUsers = users.filter((_, index) => index !== currentPlayerIndex);
+
+      if (remainingUsers.length > 1) {
+        if (window.confirm("Do you want to continue with the remaining players?")) {
+          setUsers(remainingUsers);
+          setCurrentNumber(0);
+          setCurrentPlayerIndex(0);
+          setInput("");
+        } else {
+          navigate("/");
+        }
+      } else {
+        navigate("/");
+      }
       return;
     }
 
@@ -70,16 +85,16 @@ const GameComponent = () => {
   return (
     <div className={styles.gameContainer}>
       <div className={styles.fullWidth}>
-        <p className={styles.winningNumber}>Winning number:{winningNumber} </p>
+        <p className={styles.winningNumber}>Winning number: {winningNumber}</p>
         <p className={styles.currentNumber}>Current Number: {currentNumber}</p>
       </div>
       <div className={styles.fullWidth}>
-        <p style={{'fontSize':'1.5em'}}>It's {users[currentPlayerIndex].name}'s turn</p>
+        <p style={{ fontSize: '1.5em' }}>It's {users[currentPlayerIndex].name}'s turn</p>
         <input type="text" value={input} onChange={handleInputChange} />
         <button onClick={handleSubmit} className={styles.submitButton}>Submit</button>
-        <p>Users must separate the numbers using comma.</p>
+        <p>Users must separate the numbers using commas.</p>
       </div>
-      <div className={`${styles.fullWidth} ${styles.bottomBar}` }>
+      <div className={`${styles.fullWidth} ${styles.bottomBar}`}>
         <div>
           <button onClick={handleRestart} className={styles.submitButton}>Restart</button>
           <button onClick={handleBackToHome} className={styles.submitButton}>Back to Home</button>
@@ -90,5 +105,3 @@ const GameComponent = () => {
 };
 
 export default GameComponent;
-
-
