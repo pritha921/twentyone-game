@@ -21,6 +21,8 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
     handleSubmit,
     control,
     watch,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<FormData>({
     defaultValues: {
@@ -39,16 +41,29 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
 
   useEffect(() => {
     const currentLength = fields.length;
-    if (numberOfUsers > currentLength) {
-      for (let i = currentLength; i < numberOfUsers; i++) {
-        append({ name: "" });
-      }
-    } else if (numberOfUsers < currentLength) {
-      for (let i = currentLength; i > numberOfUsers; i--) {
-        remove(i - 1);
+    if (numberOfUsers < 2) {
+      setError("numberOfUsers", {
+        type: "manual",
+        message: "Minimum two players needed.",
+      });
+    } else if (numberOfUsers > 5) {
+      setError("numberOfUsers", {
+        type: "manual",
+        message: "Maximum 5 players can play at a time.",
+      });
+    } else {
+      clearErrors("numberOfUsers");
+      if (numberOfUsers > currentLength) {
+        for (let i = currentLength; i < numberOfUsers; i++) {
+          append({ name: "" });
+        }
+      } else if (numberOfUsers < currentLength) {
+        for (let i = currentLength; i > numberOfUsers; i--) {
+          remove(i - 1);
+        }
       }
     }
-  }, [numberOfUsers, append, remove, fields.length]);
+  }, [numberOfUsers, append, remove, fields.length, setError, clearErrors]);
 
   return (
     <div className="container">
@@ -81,24 +96,28 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
             type="number"
             {...register("numberOfUsers", { required: true })}
             error={!!errors.numberOfUsers}
-            helperText={errors.numberOfUsers ? "This field is required" : ""}
+            helperText={
+              errors.numberOfUsers ? errors.numberOfUsers.message : ""
+            }
             fullWidth
           />
         </div>
 
-        {fields.map((item, index) => (
-          <div className="form-group" key={item.id}>
-            <TextField
-              label={`User ${index + 1} Name`}
-              {...register(`users.${index}.name`, { required: true })}
-              error={!!errors.users?.[index]?.name}
-              helperText={
-                errors.users?.[index]?.name ? "This field is required" : ""
-              }
-              fullWidth
-            />
-          </div>
-        ))}
+        {numberOfUsers >= 2 &&
+          numberOfUsers <= 5 &&
+          fields.map((item, index) => (
+            <div className="form-group" key={item.id}>
+              <TextField
+                label={`User ${index + 1} Name`}
+                {...register(`users.${index}.name`, { required: true })}
+                error={!!errors.users?.[index]?.name}
+                helperText={
+                  errors.users?.[index]?.name ? "This field is required" : ""
+                }
+                fullWidth
+              />
+            </div>
+          ))}
 
         <div className="button-container">
           <button className="button-24" role="button">
