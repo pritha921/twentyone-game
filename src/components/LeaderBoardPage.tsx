@@ -1,44 +1,29 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
+import styles from "./LeaderboardPage.module.css";
 
 interface User {
   name: string;
   status: string;
 }
 
-interface LocationState {
-  users: User[];
-}
-
-const LeaderboardPage: React.FC = () => {
+const LeaderboardPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { users } = location.state as LocationState;
-
-  const handleBackToHome = () => {
-    navigate('/');
-  };
+  const { users } = location.state as { users: User[] };
 
   return (
-    <div className="leaderboard-container">
-      <h1>Game Results</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Player</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, index) => (
-            <tr key={index}>
-              <td>{user.name}</td>
-              <td>{user.status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button onClick={handleBackToHome}>Back to Home</button>
+    <div className={styles.leaderboardContainer}>
+      <h1>Leaderboard</h1>
+      <ul>
+        {users.map((user, index) => (
+          <li key={index} className={styles.user}>
+            {user.name} - {user.status}
+          </li>
+        ))}
+      </ul>
+      <button onClick={() => navigate("/")} className={styles.homeButton}>
+        Back to Home
+      </button>
     </div>
   );
 };
