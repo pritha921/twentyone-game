@@ -35,7 +35,7 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
   const numberOfUsers = watch("numberOfUsers");
 
   const onSubmitForm: SubmitHandler<FormData> = (data) => {
-    navigate("/shufflingPage", { state: { ...data } });
+    navigate("/shuffle-users", { state: { ...data } });
     onSubmit(data);
   };
 

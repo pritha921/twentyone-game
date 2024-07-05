@@ -18,7 +18,7 @@ const HomePage = () => {
           the number-crunching fun begin!
         </p>
       </div>
-      <Link to="/userInputForm">
+      <Link to="/user-input-form">
         <button className="letsGoButton" role="button">
           Let's Go
         </button>

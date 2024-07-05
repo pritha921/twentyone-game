@@ -64,7 +64,7 @@ const GameComponent = () => {
         const finalUsers = updatedUsers.map((user) =>
           !user.status ? { ...user, status: "Won" } : user
         );
-        navigate("/leaderboard", { state: { users: finalUsers } });
+        navigate("/leader-board", { state: { users: finalUsers } });
         return;
       } else if (remainingUsers.length > 1) {
         const continueGame = window.confirm(
@@ -81,7 +81,7 @@ const GameComponent = () => {
           const finalUsers = updatedUsers.map((user) =>
             !user.status ? { ...user, status: "Won" } : user
           );
-          navigate("/leaderboard", { state: { users: finalUsers } });
+          navigate("/leader-board", { state: { users: finalUsers } });
           return;
         }
       }
@@ -92,7 +92,7 @@ const GameComponent = () => {
   };
 
   const handleRestart = () => {
-    navigate("/userInputForm");
+    navigate("/user-input-form");
   };
 
   const handleBackToHome = () => {
