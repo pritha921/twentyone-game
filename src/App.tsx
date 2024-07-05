@@ -15,12 +15,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route
-            path="/userInputForm"
+            path="/user-input-form"
             element={<UserInputForm onSubmit={(data) => console.log(data)} />}
           />
-          <Route path="/shufflingPage" element={<ShufflingPage />} />
+          <Route path="/shuffle-users" element={<ShufflingPage />} />
           <Route path="/game" element={<GameComponent />} />
-          <Route path="/LeaderBoard" element={<LeaderBoardPage />} />
+          <Route path="/leader-board" element={<LeaderBoardPage />} />
         </Routes>
       </div>
     </Router>
