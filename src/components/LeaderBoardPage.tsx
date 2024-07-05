@@ -14,14 +14,19 @@ const LeaderboardPage = () => {
   return (
     <div className={styles.leaderboardContainer}>
       <h1>Leaderboard</h1>
-      <ul>
+      <div className={styles.listContainer}>
+        <div className={styles.listHeader}>
+          <div className={styles.column}>Players</div>
+          <div className={styles.column}>Status</div>
+        </div>
         {users.map((user, index) => (
-          <li key={index} className={styles.user}>
-            {user.name} - {user.status}
-          </li>
+          <div key={index} className={styles.listItem}>
+            <div className={styles.column}>{user.name}</div>
+            <div className={styles.column}>{user.status}</div>
+          </div>
         ))}
-      </ul>
-      <button onClick={() => navigate("/")} className={styles.homeButton}>
+      </div>
+      <button onClick={() => navigate("/")} className={styles.backToHome}>
         Back to Home
       </button>
     </div>
@@ -29,3 +34,4 @@ const LeaderboardPage = () => {
 };
 
 export default LeaderboardPage;
+

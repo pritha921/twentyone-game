@@ -58,10 +58,10 @@ const GameComponent = () => {
         index === currentPlayerIndex ? { ...user, status: "Lost" } : user
       );
 
-      const remainingUsers = updatedUsers.filter(user => !user.status);
+      const remainingUsers = updatedUsers.filter((user) => !user.status);
 
       if (remainingUsers.length === 1) {
-        const finalUsers = updatedUsers.map(user =>
+        const finalUsers = updatedUsers.map((user) =>
           !user.status ? { ...user, status: "Won" } : user
         );
         navigate("/leaderboard", { state: { users: finalUsers } });
@@ -78,7 +78,7 @@ const GameComponent = () => {
           setCurrentPlayerIndex(0);
           return;
         } else {
-          const finalUsers = updatedUsers.map(user =>
+          const finalUsers = updatedUsers.map((user) =>
             !user.status ? { ...user, status: "Won" } : user
           );
           navigate("/leaderboard", { state: { users: finalUsers } });
@@ -106,15 +106,23 @@ const GameComponent = () => {
         <p className={styles.currentNumber}>Current Number: {currentNumber}</p>
       </div>
       <div className={styles.fullWidth}>
-        <p style={{ fontSize: "1.5em" }}>It's {allUsers[currentPlayerIndex].name}'s turn</p>
+        <p style={{ fontSize: "1.5em" }}>
+          It's {allUsers[currentPlayerIndex].name}'s turn
+        </p>
         <input type="text" value={input} onChange={handleInputChange} />
-        <button onClick={handleSubmit} className={styles.submitButton}>Submit</button>
+        <button onClick={handleSubmit} className={styles.submitButton}>
+          Submit
+        </button>
         <p>Users must separate the numbers using comma.</p>
       </div>
       <div className={`${styles.fullWidth} ${styles.bottomBar}`}>
         <div>
-          <button onClick={handleRestart} className={styles.submitButton}>Restart</button>
-          <button onClick={handleBackToHome} className={styles.submitButton}>Back to Home</button>
+          <button onClick={handleRestart} className={styles.submitButton}>
+            Restart
+          </button>
+          <button onClick={handleBackToHome} className={styles.submitButton}>
+            Back to Home
+          </button>
         </div>
       </div>
     </div>
@@ -122,8 +130,3 @@ const GameComponent = () => {
 };
 
 export default GameComponent;
-
-
-
-
-
