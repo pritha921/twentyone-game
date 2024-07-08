@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import { useGame } from "../models/GameContext"
 import "./UserInputFormStyles.css";
 
 interface FormData {
@@ -11,11 +12,8 @@ interface FormData {
   users: { name: string }[];
 }
 
-interface FormDataProps {
-  onSubmit: SubmitHandler<FormData>;
-}
-
-const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
+const UserInputForm: React.FC = () => {
+  const { setGameData } = useGame();
   const {
     register,
     handleSubmit,
@@ -34,9 +32,14 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
   const navigate = useNavigate();
   const numberOfUsers = watch("numberOfUsers");
 
-  const onSubmitForm: SubmitHandler<FormData> = (data) => {
-    navigate("/shuffle-users", { state: { ...data } });
-    onSubmit(data);
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    setGameData({
+      users: data.users,
+      winningNumber: data.winningNumber,
+      maxInputPerTurn: data.maxInputPerTurn,
+      setGameData,
+    });
+    navigate("/shuffle-users");
   };
 
   useEffect(() => {
@@ -67,7 +70,7 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
 
   return (
     <div className="container">
-      <form className="form-container" onSubmit={handleSubmit(onSubmitForm)}>
+      <form className="form-container" onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group">
           <TextField
             label="Winning Number"
@@ -96,28 +99,24 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
             type="number"
             {...register("numberOfUsers", { required: true })}
             error={!!errors.numberOfUsers}
-            helperText={
-              errors.numberOfUsers ? errors.numberOfUsers.message : ""
-            }
+            helperText={errors.numberOfUsers ? errors.numberOfUsers.message : ""}
             fullWidth
           />
         </div>
 
-        {numberOfUsers >= 2 &&
-          numberOfUsers <= 5 &&
-          fields.map((item, index) => (
-            <div className="form-group" key={item.id}>
-              <TextField
-                label={`User ${index + 1} Name`}
-                {...register(`users.${index}.name`, { required: true })}
-                error={!!errors.users?.[index]?.name}
-                helperText={
-                  errors.users?.[index]?.name ? "This field is required" : ""
-                }
-                fullWidth
-              />
-            </div>
-          ))}
+        {numberOfUsers >= 2 && numberOfUsers <= 5 && fields.map((item, index) => (
+          <div className="form-group" key={item.id}>
+            <TextField
+              label={`User ${index + 1} Name`}
+              {...register(`users.${index}.name`, { required: true })}
+              error={!!errors.users?.[index]?.name}
+              helperText={
+                errors.users?.[index]?.name ? "This field is required" : ""
+              }
+              fullWidth
+            />
+          </div>
+        ))}
 
         <div className="button-container">
           <button className="button-24" role="button">
@@ -130,3 +129,4 @@ const UserInputForm: React.FC<FormDataProps> = ({ onSubmit }) => {
 };
 
 export default UserInputForm;
+

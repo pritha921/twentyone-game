@@ -1,23 +1,11 @@
-import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useGame } from "../models/GameContext";
 import styles from "./GameStyling.module.css";
 
-interface User {
-  name: string;
-  status?: string;
-}
-
-interface LocationState {
-  users: User[];
-  winningNumber: number;
-  maxInputPerTurn: number;
-}
-
 const GameComponent = () => {
-  const location = useLocation();
+  const { users, winningNumber, maxInputPerTurn, setGameData } = useGame();
   const navigate = useNavigate();
-  const { users, winningNumber, maxInputPerTurn } =
-    location.state as LocationState;
 
   const [currentNumber, setCurrentNumber] = useState(0);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
@@ -64,7 +52,13 @@ const GameComponent = () => {
         const finalUsers = updatedUsers.map((user) =>
           !user.status ? { ...user, status: "Won" } : user
         );
-        navigate("/leader-board", { state: { users: finalUsers } });
+        setGameData({
+          users: finalUsers,
+          winningNumber,
+          maxInputPerTurn,
+          setGameData,
+        });
+        navigate("/leaderboard");
         return;
       } else if (remainingUsers.length > 1) {
         const continueGame = window.confirm(
@@ -81,7 +75,13 @@ const GameComponent = () => {
           const finalUsers = updatedUsers.map((user) =>
             !user.status ? { ...user, status: "Won" } : user
           );
-          navigate("/leader-board", { state: { users: finalUsers } });
+          setGameData({
+            users: finalUsers,
+            winningNumber,
+            maxInputPerTurn,
+            setGameData,
+          });
+          navigate("/leaderboard");
           return;
         }
       }
@@ -92,7 +92,7 @@ const GameComponent = () => {
   };
 
   const handleRestart = () => {
-    navigate("/user-input-form");
+    navigate("/userInputForm");
   };
 
   const handleBackToHome = () => {

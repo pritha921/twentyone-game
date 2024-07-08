@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
@@ -7,27 +7,15 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import React from "react";
+import { useGame } from '../models/GameContext'
 import styles from "./ShufflingUsers.module.css";
 
-interface User {
-  name: string;
-}
-
-interface LocationState {
-  users: User[];
-  winningNumber: number;
-  maxInputPerTurn: number;
-}
-
 const ShufflingPage = () => {
-  const location = useLocation();
+  const { users, winningNumber, maxInputPerTurn, setGameData } = useGame();
   const navigate = useNavigate();
-  const { users, winningNumber, maxInputPerTurn } =
-    location.state as LocationState;
-  const [shuffledUsers, setShuffledUsers] = useState<User[]>([]);
+  const [shuffledUsers, setShuffledUsers] = useState(users);
 
-  const shuffleArray = (array: User[]) => {
+  const shuffleArray = (array: typeof users) => {
     return array
       .map((value) => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
@@ -36,28 +24,28 @@ const ShufflingPage = () => {
 
   useEffect(() => {
     setShuffledUsers(shuffleArray(users));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users]);
 
   const startGame = () => {
-    navigate("/game", {
-      state: { users: shuffledUsers, winningNumber, maxInputPerTurn },
+    setGameData({
+      users: shuffledUsers,
+      winningNumber,
+      maxInputPerTurn,
+      setGameData,
     });
+    navigate("/game");
   };
 
   return (
     <div className={styles.pageContainer}>
-      <h3 className={styles.headingContainer}>
-        Let's Decide the Order of Playing
-      </h3>
-      <List sx={{ width: "100%", maxWidth: 360, bgcolor:"#FEFFD2", padding:"20px" }}>
+      <h3 className={styles.headingContainer}>Let's Decide the Order of Playing</h3>
+      <List sx={{ width: "100%", maxWidth: 360, bgcolor: "#FEFFD2", padding: "20px" }}>
         {shuffledUsers.map((user, index) => (
           <div key={index}>
             <ListItem alignItems="flex-start">
               <ListItemAvatar>
-                <Avatar
-                  alt={user.name}
-                  src="/static/images/avatar/default.jpg"
-                />
+                <Avatar alt={user.name} src="/static/images/avatar/default.jpg" />
               </ListItemAvatar>
               <ListItemText
                 primary={
@@ -70,7 +58,11 @@ const ShufflingPage = () => {
                 secondary={
                   <React.Fragment>
                     <Typography
-                      sx={{fontFamily: "Chakra Petch, sans-serif", display: "inline", fontSize: "1rem" }}
+                      sx={{
+                        fontFamily: "Chakra Petch, sans-serif",
+                        display: "inline",
+                        fontSize: "1rem",
+                      }}
                       component="span"
                       variant="body2"
                       color="text.primary"
@@ -81,9 +73,7 @@ const ShufflingPage = () => {
                 }
               />
             </ListItem>
-            {index < shuffledUsers.length - 1 && (
-              <Divider variant="inset" component="li" />
-            )}
+            {index < shuffledUsers.length - 1 && <Divider variant="inset" component="li" />}
           </div>
         ))}
       </List>
