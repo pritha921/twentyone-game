@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../models/GameContext";
 import styles from "./GameStyling.module.css";
 
 const GameComponent = () => {
-  const { users, winningNumber, maxInputPerTurn, setGameData } = useGame();
+  const { users, winningNumber, maxInputPerTurn, setGameData, addHistory } = useGame();
   const navigate = useNavigate();
 
   const [currentNumber, setCurrentNumber] = useState(0);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [input, setInput] = useState("");
   const [allUsers, setAllUsers] = useState(users);
+
+  useEffect(() => {
+    setAllUsers(users);
+  }, [users]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -39,6 +43,8 @@ const GameComponent = () => {
     const newCurrentNumber = numbers[numbers.length - 1];
     setCurrentNumber(newCurrentNumber);
 
+    addHistory(users[currentPlayerIndex].name, numbers);
+
     if (newCurrentNumber >= winningNumber) {
       alert(`${users[currentPlayerIndex].name} loses!`);
 
@@ -52,12 +58,7 @@ const GameComponent = () => {
         const finalUsers = updatedUsers.map((user) =>
           !user.status ? { ...user, status: "Won" } : user
         );
-        setGameData({
-          users: finalUsers,
-          winningNumber,
-          maxInputPerTurn,
-          setGameData,
-        });
+        setGameData({ users: finalUsers });
         navigate("/leaderboard");
         return;
       } else if (remainingUsers.length > 1) {
@@ -72,21 +73,18 @@ const GameComponent = () => {
           setCurrentPlayerIndex(0);
           return;
         } else {
-          const finalUsers = updatedUsers.map((user) => !user.status ? { ...user, status: "Won" } : user
+          const finalUsers = updatedUsers.map((user) =>
+            !user.status ? { ...user, status: "Won" } : user
           );
-          setGameData({
-            users: finalUsers,
-            winningNumber,
-            maxInputPerTurn,
-            setGameData,
-          });
+          setGameData({ users: finalUsers });
           navigate("/leaderboard");
           return;
         }
       }
     }
 
-    setCurrentPlayerIndex((currentPlayerIndex + 1) % allUsers.length);
+    const remainingPlayers = allUsers.filter((user) => !user.status);
+    setCurrentPlayerIndex((currentPlayerIndex + 1) % remainingPlayers.length);
     setInput("");
   };
 
@@ -114,6 +112,16 @@ const GameComponent = () => {
         </button>
         <p>Users must separate the numbers using comma.</p>
       </div>
+      {/* <div className={styles.history}>
+        <h3>History</h3>
+        <ul>
+          {history.map((entry, index) => (
+            <li key={index}>
+              {entry.player} - {entry.inputs.join(", ")}
+            </li>
+          ))}
+        </ul>
+      </div> */}
       <div className={`${styles.fullWidth} ${styles.bottomBar}`}>
         <div>
           <button onClick={handleRestart} className={styles.submitButton}>

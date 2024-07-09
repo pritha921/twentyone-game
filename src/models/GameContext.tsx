@@ -5,25 +5,30 @@ interface User {
   status?: string;
 }
 
-interface GameData {
+interface GameContextType {
   users: User[];
   winningNumber: number;
   maxInputPerTurn: number;
-  setGameData: (data: GameData) => void;
+  setGameData: (data: Partial<GameContextType>) => void;
+  history: { player: string; inputs: number[] }[];
+  addHistory: (player: string, inputs: number[]) => void;
 }
 
-const GameContext = createContext<GameData | undefined>(undefined);
+const GameContext = createContext<GameContextType | undefined>(undefined);
 
 export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [gameData, setGameData] = useState<GameData>({
+  const [gameData, setGameData] = useState<GameContextType>({
     users: [],
     winningNumber: 0,
     maxInputPerTurn: 0,
-    setGameData: () => {},
+    setGameData: (data: Partial<GameContextType>) => setGameData((prev) => ({ ...prev, ...data })),
+    history: [],
+    addHistory: (player: string, inputs: number[]) =>
+      setGameData((prev) => ({ ...prev, history: [...prev.history, { player, inputs }] })),
   });
 
   return (
-    <GameContext.Provider value={{ ...gameData, setGameData }}>
+    <GameContext.Provider value={gameData}>
       {children}
     </GameContext.Provider>
   );
@@ -37,6 +42,4 @@ export const useGame = () => {
   }
   return context;
 };
-
-
 
