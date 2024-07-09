@@ -72,8 +72,7 @@ const GameComponent = () => {
           setCurrentPlayerIndex(0);
           return;
         } else {
-          const finalUsers = updatedUsers.map((user) =>
-            !user.status ? { ...user, status: "Won" } : user
+          const finalUsers = updatedUsers.map((user) => !user.status ? { ...user, status: "Won" } : user
           );
           setGameData({
             users: finalUsers,
@@ -130,3 +129,4 @@ const GameComponent = () => {
 };
 
 export default GameComponent;
+
