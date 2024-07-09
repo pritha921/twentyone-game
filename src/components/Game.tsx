@@ -89,7 +89,7 @@ const GameComponent = () => {
   };
 
   const handleRestart = () => {
-    navigate("/userInputForm");
+    navigate("/user-input-form");
   };
 
   const handleBackToHome = () => {
