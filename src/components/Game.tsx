@@ -4,8 +4,7 @@ import { useGame } from "../models/GameContext";
 import styles from "./GameStyling.module.css";
 
 const GameComponent = () => {
-  const { users, winningNumber, maxInputPerTurn, setGameData, addHistory } =
-    useGame();
+  const { users, winningNumber, maxInputPerTurn, setGameData, addHistory, history,clearHistory } = useGame();
   const navigate = useNavigate();
 
   const [currentNumber, setCurrentNumber] = useState(0);
@@ -79,6 +78,7 @@ const GameComponent = () => {
           );
           setGameData({ users: finalUsers });
           navigate("/leaderboard");
+          clearHistory();
           return;
         }
       }
@@ -90,10 +90,12 @@ const GameComponent = () => {
   };
 
   const handleRestart = () => {
+    clearHistory();
     navigate("/user-input-form");
   };
 
   const handleBackToHome = () => {
+    clearHistory();
     navigate("/");
   };
 
@@ -113,7 +115,7 @@ const GameComponent = () => {
         </button>
         <p>Users must separate the numbers using comma.</p>
       </div>
-      {/* <div className={styles.history}>
+      <div className={styles.history}>
         <h3>History</h3>
         <ul>
           {history.map((entry, index) => (
@@ -122,7 +124,7 @@ const GameComponent = () => {
             </li>
           ))}
         </ul>
-      </div> */}
+      </div>
       <div className={`${styles.fullWidth} ${styles.bottomBar}`}>
         <div>
           <button onClick={handleRestart} className={styles.submitButton}>

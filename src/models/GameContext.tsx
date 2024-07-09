@@ -5,13 +5,19 @@ interface User {
   status?: string;
 }
 
+interface HistoryEntry {
+  player: string;
+  inputs: number[];
+}
+
 interface GameContextType {
   users: User[];
   winningNumber: number;
   maxInputPerTurn: number;
   setGameData: (data: Partial<GameContextType>) => void;
-  history: { player: string; inputs: number[] }[];
+  history: HistoryEntry[];
   addHistory: (player: string, inputs: number[]) => void;
+  clearHistory: () => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -21,10 +27,15 @@ export const GameProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     users: [],
     winningNumber: 0,
     maxInputPerTurn: 0,
-    setGameData: (data: Partial<GameContextType>) => setGameData((prev) => ({ ...prev, ...data })),
+    setGameData: (data: Partial<GameContextType>) =>
+      setGameData((prev) => ({ ...prev, ...data })),
     history: [],
     addHistory: (player: string, inputs: number[]) =>
-      setGameData((prev) => ({ ...prev, history: [...prev.history, { player, inputs }] })),
+      setGameData((prev) => ({
+        ...prev,
+        history: [...prev.history, { player, inputs }],
+      })),
+      clearHistory: () => setGameData((prev) => ({ ...prev, history: [] })),
   });
 
   return (
@@ -42,4 +53,5 @@ export const useGame = () => {
   }
   return context;
 };
+
 
