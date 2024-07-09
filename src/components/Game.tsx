@@ -4,7 +4,8 @@ import { useGame } from "../models/GameContext";
 import styles from "./GameStyling.module.css";
 
 const GameComponent = () => {
-  const { users, winningNumber, maxInputPerTurn, setGameData, addHistory } = useGame();
+  const { users, winningNumber, maxInputPerTurn, setGameData, addHistory } =
+    useGame();
   const navigate = useNavigate();
 
   const [currentNumber, setCurrentNumber] = useState(0);
@@ -137,4 +138,3 @@ const GameComponent = () => {
 };
 
 export default GameComponent;
-
