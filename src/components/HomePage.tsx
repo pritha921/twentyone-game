@@ -1,7 +1,17 @@
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
+import { useGame } from "../models/GameContext";
 import "./HomePageStyling.css";
 import "../index.css";
+
 const HomePage = () => {
+  const navigate = useNavigate();
+  const { clearHistory } = useGame();
+
+  const handleStartGame = () => {
+    clearHistory();
+    navigate("/user-input-form");
+  };
+
   return (
     <div className="homepage-container">
       <div style={{ textAlign: "center" }}>
@@ -18,11 +28,9 @@ const HomePage = () => {
           the number-crunching fun begin!
         </p>
       </div>
-      <Link to="/user-input-form">
-        <button className="letsGoButton" role="button">
-          Let's Go
-        </button>
-      </Link>
+      <button className="letsGoButton" role="button" onClick={handleStartGame}>
+        Let's Go
+      </button>
     </div>
   );
 };
