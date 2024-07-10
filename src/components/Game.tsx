@@ -129,7 +129,7 @@ const GameComponent = () => {
         <h3 className={styles.historyHeading}>History</h3>
         <ul>
           {history.map((entry, index) => (
-            <li key={index}>
+            <li className={styles.listItems}key={index}>
               {entry.player} - {entry.inputs.join(", ")}
             </li>
           ))}
