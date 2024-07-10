@@ -126,7 +126,7 @@ const GameComponent = () => {
           </button>
         </div>
         <div className={styles.history}>
-        <h3>History</h3>
+        <h3 className={styles.historyHeading}>History</h3>
         <ul>
           {history.map((entry, index) => (
             <li key={index}>

@@ -130,4 +130,10 @@ input {
 .history{
   background-color: #ff7d29;
   padding:20px;
+  border-radius: 10%;
+}
+
+.historyHeading{
+  color:#ffffff;
+  box-shadow: none;
 }
