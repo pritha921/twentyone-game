@@ -77,7 +77,7 @@
 .bottomBar {
   align-self: end;
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
 }
 
 input {
@@ -125,4 +125,9 @@ input {
 
 .submitButton:active {
   opacity: 0.5;
+}
+
+.history{
+  background-color: #ff7d29;
+  padding:20px;
 }

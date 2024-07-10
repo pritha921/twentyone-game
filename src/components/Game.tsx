@@ -115,16 +115,7 @@ const GameComponent = () => {
         </button>
         <p>Users must separate the numbers using comma.</p>
       </div>
-      <div className={styles.history}>
-        <h3>History</h3>
-        <ul>
-          {history.map((entry, index) => (
-            <li key={index}>
-              {entry.player} - {entry.inputs.join(", ")}
-            </li>
-          ))}
-        </ul>
-      </div>
+      
       <div className={`${styles.fullWidth} ${styles.bottomBar}`}>
         <div>
           <button onClick={handleRestart} className={styles.submitButton}>
@@ -134,6 +125,16 @@ const GameComponent = () => {
             Back to Home
           </button>
         </div>
+        <div className={styles.history}>
+        <h3>History</h3>
+        <ul>
+          {history.map((entry, index) => (
+            <li key={index}>
+              {entry.player} - {entry.inputs.join(", ")}
+            </li>
+          ))}
+        </ul>
+      </div>
       </div>
     </div>
   );
