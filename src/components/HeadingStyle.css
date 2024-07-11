@@ -1,9 +1,28 @@
 .heading-content {
-    display: flex;
-    justify-content: center;
-    color: #ff7d29;
-    font-family: "Chakra Petch", sans-serif;
-    font-size: 6em;
-    text-shadow: 0.03em 0.03em 0 hsla(230, 50%, 50%, 1);
-    margin:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff7d29;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 3em;
+  text-shadow: 0.03em 0.03em 0 hsla(230, 50%, 50%, 1);
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .heading-content {
+    font-size: 3em;
   }
+}
+
+@media (min-width: 768px) {
+  .heading-content {
+    font-size: 6em;
+  }
+}
+
+@media (min-width: 1080px) {
+  .heading-content {
+    font-size: 7em;
+  }
+}
