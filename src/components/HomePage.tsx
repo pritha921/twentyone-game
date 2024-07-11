@@ -55,6 +55,7 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
+
       <div style={{ textAlign: "center" }}>
         <p className="description-container">
           Welcome to the ultimate showdown of wits and strategy—<strong>BAGRAM GAME</strong>!
