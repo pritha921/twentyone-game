@@ -46,12 +46,10 @@ const UserInputForm: React.FC = () => {
     const currentLength = fields.length;
     if (numberOfUsers < 2) {
       setError("numberOfUsers", {
-        type: "manual",
         message: "Minimum two players needed.",
       });
     } else if (numberOfUsers > 5) {
       setError("numberOfUsers", {
-        type: "manual",
         message: "Maximum 5 players can play at a time.",
       });
     } else {
