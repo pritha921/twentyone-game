@@ -2,15 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGame } from "../models/GameContext";
 import styles from "./GameStyling.module.css";
+import ModalComponent from "./ModalComponent";
 
 const GameComponent = () => {
-  const { users, winningNumber, maxInputPerTurn, setGameData, addHistory, history,clearHistory } = useGame();
+  const { users, winningNumber, maxInputPerTurn, setGameData, addHistory, history, clearHistory } = useGame();
   const navigate = useNavigate();
 
   const [currentNumber, setCurrentNumber] = useState(0);
   const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
   const [input, setInput] = useState("");
   const [allUsers, setAllUsers] = useState(users);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     setAllUsers(users);
@@ -99,10 +101,14 @@ const GameComponent = () => {
     navigate("/");
   };
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <div className={styles.gameContainer}>
       <div className={styles.fullWidth}>
-        <p className={styles.winningNumber}>Winning number: {winningNumber} </p>
+        <p className={styles.winningNumber}>Winning number: {winningNumber}</p>
         <p className={styles.currentNumber}>Current Number: {currentNumber}</p>
       </div>
       <div className={styles.fullWidth}>
@@ -115,7 +121,6 @@ const GameComponent = () => {
         </button>
         <p>Users must separate the numbers using comma.</p>
       </div>
-      
       <div className={`${styles.fullWidth} ${styles.bottomBar}`}>
         <div>
           <button onClick={handleRestart} className={styles.submitButton}>
@@ -125,17 +130,13 @@ const GameComponent = () => {
             Back to Home
           </button>
         </div>
-        <div className={styles.history}>
-        <h3 className={styles.historyHeading}>History</h3>
-        <ul>
-          {history.map((entry, index) => (
-            <li className={styles.listItems}key={index}>
-              {entry.player} - {entry.inputs.join(", ")}
-            </li>
-          ))}
-        </ul>
+        <div>
+          <button onClick={toggleModal} className={styles.submitButton}>
+            History
+          </button>
+        </div>
       </div>
-      </div>
+      <ModalComponent isOpen={isModalOpen} toggleModal={toggleModal} history={history} />
     </div>
   );
 };
