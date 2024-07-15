@@ -26,3 +26,13 @@
     font-size: 7em;
   }
 }
+
+.heading-link {
+  text-decoration: none;
+  color: inherit; 
+}
+
+.heading-link:hover {
+  text-decoration: none;
+}
+
