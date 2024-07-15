@@ -62,4 +62,8 @@ body {
   .description-container {
     font-size: 2em;
   }
+
+  .letsGoButton{
+    margin-bottom: 40px;
+  }
 }
