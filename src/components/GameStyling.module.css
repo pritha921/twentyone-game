@@ -32,7 +32,8 @@ input {
   box-sizing: border-box;
 }
 
-.submitButton {
+.submitButton,
+.bottomBarButton {
   background: #ff7d29;
   border: 1px solid #ff7d29;
   border-radius: 6px;
@@ -59,24 +60,17 @@ input {
 }
 
 .submitButton:hover,
-.submitButton:active {
+.submitButton:active,
+.bottomBarButton:hover,
+.bottomBarButton:active {
   background-color: initial;
   background-position: 0 0;
   color: #ff4742;
 }
 
-.submitButton:active {
+.submitButton:active,
+.bottomBarButton:active {
   opacity: 0.5;
-}
-
-.history{
-  background-color: #ff7d29;
-  padding:20px;
-  border-radius: 10%;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .historyHeading{
@@ -90,4 +84,20 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+
+@media (max-width: 410px) {
+  .bottomBar {
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-between;
+  }
+  
+  .bottomBarButton {
+    width: 60%;
+    margin: 5px 0;
+    font-size: 16px;
+  }
 }

@@ -123,15 +123,15 @@ const GameComponent = () => {
       </div>
       <div className={`${styles.fullWidth} ${styles.bottomBar}`}>
         <div>
-          <button onClick={handleRestart} className={styles.submitButton}>
+          <button onClick={handleRestart} className={styles.bottomBarButton}>
             Restart
           </button>
-          <button onClick={handleBackToHome} className={styles.submitButton}>
+          <button onClick={handleBackToHome} className={styles.bottomBarButton}>
             Back to Home
           </button>
         </div>
         <div>
-          <button onClick={toggleModal} className={styles.submitButton}>
+          <button onClick={toggleModal} className={styles.bottomBarButton}>
             History
           </button>
         </div>
